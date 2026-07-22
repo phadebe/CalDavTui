@@ -19,15 +19,24 @@ Event contains:
 
 
 def pick_calendar(default_calendar_id: int) -> int:
-    calendar_id = 1
-    prompt = "(W)ork or (P)ersonal account? \n"
+    prompt = (
+        "(W)ork or (P)ersonal account? \n"
+        f"Press Enter to use your Default Calendar ({default_calendar_id}) "
+    )
     calendar_name: str = input(prompt).strip().upper()
     if calendar_name == "W":
-        calendar_id = 1
+        return 1
     elif calendar_name == "P":
-        calendar_id = 2
-    return calendar_id
+        return 2
+
+    return default_calendar_id
 
 
-# def get_title(title: str) -> str:
-#
+def get_title(title: str) -> str:
+    prompt = "Title: "
+    title = input(prompt)
+    return title
+
+
+# print(pick_calendar(default_calendar_id=5))
+# print(get_title("first title"))
