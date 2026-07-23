@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 # from datetime import datetime
+from email.utils import formataddr
 
 """
 Add basic functionality
@@ -40,3 +41,23 @@ def get_title(title: str) -> str:
 
 # print(pick_calendar(default_calendar_id=5))
 # print(get_title("first title"))
+# 5. Author Allow any string for [Name Surname]
+# but impose structure on email@addre.ss.com
+def what_author(default_name: str, default_email: str):
+    name_prompt = "Enter your name: "
+    email_prompt = "Enter your email: "
+    author_name = input(name_prompt)
+    author_email = input(email_prompt)
+
+    if not author_name:
+        author_name = default_name
+
+    if not author_email:
+        author_email = default_email
+
+    formatted = formataddr((author_name, author_email))
+    return formatted
+
+
+# john = what_author(John Doe, )
+print(what_author(default_name="John Doe", default_email="johndoe@gmail.com"))
