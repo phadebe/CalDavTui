@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
-from dataclasses import dataclass
+# from dataclasses import dataclass
 from datetime import datetime
-
-# from email.utils import formataddr
+from models import Event, Person
 
 """
 Add basic functionality
@@ -19,22 +18,6 @@ Event contains:
     6. Desciption
     7. Colour
 """
-
-
-@dataclass
-class Person:
-    name: str
-    email: str
-
-
-@dataclass
-class Event:
-    id: int
-    title: str
-    start: datetime
-    end: datetime
-    description: str | None
-    creator: Person
 
 
 # def pick_calendar(default_calendar_id: int) -> int:
@@ -76,8 +59,7 @@ class Event:
 #     formatted = formataddr((author_name, author_email))
 #     return formatted
 #
-#
-# print(what_author(default_name="John Doe", default_email="johndoe@gmail.com"))
+##
 
 
 # Instantiates the classes and runs all code within (runs as script)
@@ -85,14 +67,22 @@ if __name__ == "__main__":
     creator1 = Person(name="Philasande Hadebe", email="philasand2010@gmail.com")
 
     event1 = Event(
-        id=1,
         title="My Birthday",
         start=datetime(2005, 8, 22),
         end=datetime(2005, 8, 22),
         description=None,
         creator=creator1,
     )
+    event2 = Event(
+        title="Michaels Birthday",
+        start=datetime(2005, 8, 22),
+        end=datetime(2005, 8, 22),
+        description=None,
+        creator=creator1,
+    )
     print("***")
-    print(creator1)
-    print("***")
+    print(f"The following creator, {creator1.name} wrote the below event: ")
     print(event1)
+    print("***")
+    print(event2)
+    print("***")
