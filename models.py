@@ -11,6 +11,12 @@ class Person:
 
 @dataclass
 class Event:
+    title: str
+    start: datetime
+    end: datetime
+    creator: Person
+    description: str | None = None
+
     id: int = field(init=False)
 
     _next_id: ClassVar[int] = 0
@@ -18,9 +24,3 @@ class Event:
     def __post_init__(self):
         self.id = Event._next_id
         Event._next_id += 1
-
-    title: str
-    start: datetime
-    end: datetime
-    description: str | None
-    creator: Person
