@@ -15,6 +15,7 @@ class Event:
     start: datetime
     end: datetime
     creator: Person
+    calendar_id: int
     description: str | None = None
 
     id: int = field(init=False)
@@ -24,3 +25,10 @@ class Event:
     def __post_init__(self):
         self.id = Event._next_id
         Event._next_id += 1
+
+
+@dataclass
+class Calendar:
+    id: int
+    name: str
+    colour: str
