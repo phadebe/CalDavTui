@@ -10,7 +10,7 @@ class Person:
 
 
 @dataclass
-class Event:
+class Event:  # parameter order = required, optional, logic dependant
     title: str
     start: datetime
     end: datetime
