@@ -2,7 +2,7 @@
 
 # from dataclasses import dataclass
 from datetime import datetime
-from models import Event, Person
+from models import Event, Person, Calendar
 
 """
 Add basic functionality
@@ -61,28 +61,84 @@ Event contains:
 #
 ##
 
-
 # Instantiates the classes and runs all code within (runs as script)
 if __name__ == "__main__":
-    creator1 = Person(name="Philasande Hadebe", email="philasand2010@gmail.com")
+    creators = [
+        Person(name="Simon Peach", email="simonpeach@gmail.com"),
+        Person(name="John Doe", email="johndoe@gmail.com"),
+    ]
 
-    event1 = Event(
-        title="My Birthday",
-        start=datetime(2005, 8, 22),
-        end=datetime(2005, 8, 22),
-        description=None,
-        creator=creator1,
-    )
-    event2 = Event(
-        title="Michaels Birthday",
-        start=datetime(2005, 8, 22),
-        end=datetime(2005, 8, 22),
-        description=None,
-        creator=creator1,
-    )
-    print("***")
-    print(f"The following creator, {creator1.name} wrote the below event: ")
-    print(event1)
-    print("***")
-    print(event2)
-    print("***")
+    calendars = [
+        Calendar(id=1, name="Personal", colour="Green"),
+        Calendar(id=2, name="Work", colour="Blue"),
+        Calendar(id=3, name="School", colour="Red"),
+    ]
+
+    events = [
+        Event(
+            title="My Birthday",
+            start=datetime(2002, 7, 23),
+            end=datetime(2002, 7, 23),
+            creator=creators[0],
+            calendar_id=calendars[0].id,
+            description=None,
+        ),
+        Event(
+            title="Michaels Birthday",
+            start=datetime(2005, 8, 22),
+            end=datetime(2005, 8, 22),
+            creator=creators[0],
+            calendar_id=calendars[0].id,
+            description=None,
+        ),
+        Event(
+            title="IFS242 Exam",
+            start=datetime(2002, 7, 23),
+            end=datetime(2002, 7, 23),
+            creator=creators[1],
+            calendar_id=calendars[1].id,
+            description=None,
+        ),
+        Event(
+            title="Workplace Harrasment meeting",
+            start=datetime(2002, 7, 23),
+            end=datetime(2002, 7, 23),
+            creator=creators[1],
+            calendar_id=calendars[2].id,
+            description=None,
+        ),
+    ]
+
+    def get_events(events: list[Event], calendar_id: int) -> list[Event]:
+        matching_events: list[Event] = []
+        for event in events:
+            if event.calendar_id == calendar_id:
+                matching_events.append(event.title)
+
+        return matching_events
+
+    print("*1*Type of events object**************************************")
+    print("****************************************")
+    print("****************************************")
+    print(type(events))
+    print("****************************************")
+    print("****************************************")
+    print("*2*Type of get_events object**************************************")
+    print(type(get_events))
+    print("****************************************")
+    print("****************************************")
+    print("*1*Events in calendar 1**************************************")
+    print("****************************************")
+    print("****************************************")
+    print(get_events(events, 1))
+    print("*2*Events in calendar 2**************************************")
+    print("****************************************")
+    print("****************************************")
+    print(get_events(events, 2))
+    print("*3*Events in calendar 3**************************************")
+    print("****************************************")
+    print("****************************************")
+    print(get_events(events, 3))
+    print("*4*EOL**************************************")
+    print("***************************************")
+    print("***************************************")
