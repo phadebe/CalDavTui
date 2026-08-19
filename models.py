@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from datetime import datetime
+from datetime import datetime, date
 from typing import ClassVar
 
 
@@ -12,8 +12,8 @@ class Person:
 @dataclass
 class Event:  # parameter order = required, optional, logic dependant
     title: str
-    start: datetime
-    end: datetime
+    start: date
+    end: date
     creator: Person
     calendar_id: int
     description: str | None = None
