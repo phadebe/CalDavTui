@@ -22,7 +22,6 @@ def get_author() -> tuple[str, str]:
     return author_name, author_email
 
 
-# TODO add data standardisation
 def get_start_date() -> date:
     try:
         print("**********Please enter the start date**********")
@@ -68,7 +67,7 @@ def get_events(events: list[Event], calendar_id: int) -> list[Event]:
 #         description: str | None = None
 #     )
 
-# Instantiates the classes and runs all code within (runs as script)
+
 if __name__ == "__main__":
     #    creators = [
     #        Person(name="Simon Peach", email="simonpeach@gmail.com"),
