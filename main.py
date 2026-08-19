@@ -52,20 +52,21 @@ def get_events(events: list[Event], calendar_id: int) -> list[Event]:
     return [event for event in events if event.calendar_id == calendar_id]
 
 
-# def build_event(calendar_id: int):
-#     title = get_title()
-#     author_name, author_email = get_author()
-#     creator = Person(name=author_name, email=author_email)
-#     start_date=get_start_date()
-#     end_date=get_end_date()
-#     return Event(
-#         title=title,
-#         start=,
-#         end=,
-#         creator=creator,
-#         calendar_id=calendar_id,
-#         description: str | None = None
-#     )
+def build_event(calendar_id: int):
+    title = get_title()
+    author_name, author_email = get_author()
+    creator = Person(name=author_name, email=author_email)
+    start_date = get_start_date()
+    end_date = get_end_date()
+    description = "Hello this is a basic description"
+    return Event(
+        title=title,
+        start=start_date,
+        end=end_date,
+        creator=creator,
+        calendar_id=calendar_id,
+        description=description,
+    )
 
 
 if __name__ == "__main__":
@@ -117,7 +118,6 @@ if __name__ == "__main__":
 
     print("****************************************")
     print("****************************************")
-    print(f"{get_start_date()}")
+    print(f"{build_event(1)}")
     print("****************************************")
     print("****************************************")
-    print(f"{get_end_date()}")
