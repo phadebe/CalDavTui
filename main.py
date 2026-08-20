@@ -2,9 +2,11 @@
 
 # from dataclasses import dataclass
 
-from datetime import date
+from datetime import datetime
 
 from models import Calendar, Event, Person
+
+from zoneinfo import ZoneInfo
 
 
 def get_title() -> str:
@@ -22,32 +24,36 @@ def get_author() -> tuple[str, str]:
     return author_name, author_email
 
 
-def get_start_date() -> date:
-    try:
-        print("**********Please enter the start date**********")
-        year = int(input("Enter year (YYYY): "))
-        month = int(input("Enter month (1-12): "))
-        day = int(input("Enter day (1-31): "))
-        user_date = date(year, month, day)
-    except ValueError:
-        user_date = date(1970, 1, 1)
+def get_start_date() -> datetime:
+    while True:
+        try:
+            print("***Please enter start date***")
+            year = int(input("Enter year (YYYY): "))
+            month = int(input("Enter month (1-12): "))
+            day = int(input("Enter day (1-31): "))
+            user_date = datetime(
+                year, month, day, tzinfo=ZoneInfo("Africa/Johannesburg")
+            )
 
-    return user_date
+            return user_date
+        except ValueError:
+            print("***Sorry, please insert valid start date***")
 
 
-def get_end_date() -> date:
-    try:
-        print("**********Please enter the end date**********")
-        year = int(input("Enter year (YYYY): "))
-        month = int(input("Enter month (1-12): "))
-        day = int(input("Enter day (1-31): "))
-        user_date = date(year, month, day)
-    except ValueError:
-        print("The date you input was incorrect.")
-        print("(Defaulted to 1970, 1,1)")
-        user_date = date(1970, 1, 1)
+def get_end_date() -> datetime:
+    while True:
+        try:
+            print("***Please enter end date***")
+            year = int(input("Enter year (YYYY): "))
+            month = int(input("Enter month (1-12): "))
+            day = int(input("Enter day (1-31): "))
+            user_date = datetime(
+                year, month, day, tzinfo=ZoneInfo("Africa/Johannesburg")
+            )
 
-    return user_date
+            return user_date
+        except ValueError:
+            print("***Sorry, please insert valid end date***")
 
 
 def get_events(events: list[Event], calendar_id: int) -> list[Event]:
