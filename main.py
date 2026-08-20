@@ -37,7 +37,7 @@ def get_start_date() -> datetime:
 
             return user_date
         except ValueError:
-            print("***Sorry, please insert valid start date***")
+            print("Sorry, please insert valid start date")
 
 
 def get_end_date() -> datetime:
