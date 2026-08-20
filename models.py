@@ -12,8 +12,8 @@ class Person:
 @dataclass
 class Event:  # parameter order = required, optional, logic dependant
     title: str
-    start: date
-    end: date
+    start: datetime
+    end: datetime
     creator: Person
     calendar_id: int
     description: str | None = None
