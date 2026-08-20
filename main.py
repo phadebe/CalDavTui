@@ -43,6 +43,8 @@ def get_end_date() -> date:
         day = int(input("Enter day (1-31): "))
         user_date = date(year, month, day)
     except ValueError:
+        print("The date you input was incorrect.")
+        print("(Defaulted to 1970, 1,1)")
         user_date = date(1970, 1, 1)
 
     return user_date
