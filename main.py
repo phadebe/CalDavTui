@@ -3,16 +3,21 @@
 # from dataclasses import dataclass
 
 from datetime import datetime
-
-from models import Calendar, Event, Person
-
 from zoneinfo import ZoneInfo
+
+from models import Event, Person
 
 
 def get_title() -> str:
     prompt: str = "Title: "
     title: str = input(prompt)
     return title
+
+
+def get_description() -> str:
+    prompt: str = "Enter description: "
+    description: str = input(prompt)
+    return description
 
 
 def get_author() -> tuple[str, str]:
@@ -66,7 +71,7 @@ def build_event(calendar_id: int):
     creator = Person(name=author_name, email=author_email)
     start_date = get_start_date()
     end_date = get_end_date()
-    description = "Hello this is a basic description"
+    description = get_description()
     return Event(
         title=title,
         start=start_date,
@@ -78,51 +83,6 @@ def build_event(calendar_id: int):
 
 
 if __name__ == "__main__":
-    #    creators = [
-    #        Person(name="Simon Peach", email="simonpeach@gmail.com"),
-    #        Person(name="John Doe", email="johndoe@gmail.com"),
-    #    ]
-    #
-    #    calendars = [
-    #        Calendar(id=1, name="Personal", colour="Green"),
-    #        Calendar(id=2, name="Work", colour="Blue"),
-    #        Calendar(id=3, name="School", colour="Red"),
-    #    ]
-    #
-    #    events = [
-    #        Event(
-    #            title="My Birthday",
-    #            start=datetime(2002, 7, 23),
-    #            end=datetime(2002, 7, 23),
-    #            creator=creators[0],
-    #            calendar_id=calendars[0].id,
-    #            description=None,
-    #        ),
-    #        Event(
-    #            title="Michaels Birthday",
-    #            start=datetime(2005, 8, 22),
-    #            end=datetime(2005, 8, 22),
-    #            creator=creators[0],
-    #            calendar_id=calendars[0].id,
-    #            description=None,
-    #        ),
-    #        Event(
-    #            title="IFS242 Exam",
-    #            start=datetime(2002, 7, 23),
-    #            end=datetime(2002, 7, 23),
-    #            creator=creators[1],
-    #            calendar_id=calendars[1].id,
-    #            description=None,
-    #        ),
-    #        Event(
-    #            title="Workplace Harrasment meeting",
-    #            start=datetime(2002, 7, 23),
-    #            end=datetime(2002, 7, 23),
-    #            creator=creators[1],
-    #            calendar_id=calendars[2].id,
-    #            description=None,
-    #        ),
-    #    ]
 
     print("****************************************")
     print("****************************************")
