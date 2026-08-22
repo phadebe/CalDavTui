@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 
-# from dataclasses import dataclass
-
 from datetime import datetime
+from dataclasses import asdict
 from zoneinfo import ZoneInfo
+import json
 
 from models import Event, Person
 
@@ -65,7 +65,7 @@ def get_events(events: list[Event], calendar_id: int) -> list[Event]:
     return [event for event in events if event.calendar_id == calendar_id]
 
 
-def build_event(calendar_id: int):
+def build_event(calendar_id: int) -> Event:
     title = get_title()
     author_name, author_email = get_author()
     creator = Person(name=author_name, email=author_email)
@@ -82,10 +82,14 @@ def build_event(calendar_id: int):
     )
 
 
+def event_to_dict(Event):
+    return json.dumps(asdict()))
+
+
 if __name__ == "__main__":
 
     print("****************************************")
     print("****************************************")
-    print(f"{build_event(1)}")
+    print(f"{event_to_dict(build_event(1))}")
     print("****************************************")
     print("****************************************")
