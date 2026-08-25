@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
-from datetime import datetime
-from dataclasses import asdict
-from zoneinfo import ZoneInfo
 import json
+from dataclasses import asdict
+from datetime import datetime
 
 from models import Event, Person
 
@@ -29,36 +28,17 @@ def get_author() -> tuple[str, str]:
     return author_name, author_email
 
 
-def get_start_date() -> datetime:
+def get_date(start_or_end: str) -> datetime:
     while True:
         try:
-            print("***Please enter start date***")
-            year = int(input("Enter year (YYYY): "))
-            month = int(input("Enter month (1-12): "))
-            day = int(input("Enter day (1-31): "))
-            user_date = datetime(
-                year, month, day, tzinfo=ZoneInfo("Africa/Johannesburg")
-            )
-
-            return user_date
+            print(f"***Please enter {start_or_end} date***")
+            user_input = input("Enter date and time (DD-MM-YYYY HH:MM): ")
+            date_input = f"{user_input} +0200"
+            format_layout = "%d-%m-%Y %H:%M %z"
+            date_of = datetime.strptime(date_input, format_layout)
+            return date_of
         except ValueError:
-            print("Sorry, please insert valid start date")
-
-
-def get_end_date() -> datetime:
-    while True:
-        try:
-            print("***Please enter end date***")
-            year = int(input("Enter year (YYYY): "))
-            month = int(input("Enter month (1-12): "))
-            day = int(input("Enter day (1-31): "))
-            user_date = datetime(
-                year, month, day, tzinfo=ZoneInfo("Africa/Johannesburg")
-            )
-
-            return user_date
-        except ValueError:
-            print("***Sorry, please insert valid end date***")
+            print(f"Sorry, {start_or_end} date was invalid")
 
 
 def get_events(events: list[Event], calendar_id: int) -> list[Event]:
@@ -69,8 +49,8 @@ def build_event(calendar_id: int) -> Event:
     title = get_title()
     author_name, author_email = get_author()
     creator = Person(name=author_name, email=author_email)
-    start_date = get_start_date()
-    end_date = get_end_date()
+    start_date = get_date("start")
+    end_date = get_date("end")
     description = get_description()
     return Event(
         title=title,
@@ -81,15 +61,18 @@ def build_event(calendar_id: int) -> Event:
         description=description,
     )
 
-
-def event_to_dict(Event):
-    return json.dumps(asdict()))
+    # def event_to_json(events: list[Event]):
+    #     event_data = [events.__dict__ for event in events]
+    #     return json.dumps(event_data)
 
 
 if __name__ == "__main__":
 
     print("****************************************")
     print("****************************************")
-    print(f"{event_to_dict(build_event(1))}")
+    print(get_date("start"))
+    print("****************************************")
+    print("****************************************")
+    print(get_date("end"))
     print("****************************************")
     print("****************************************")
