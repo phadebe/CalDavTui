@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import ClassVar
+from uuid import UUID, uuid4
 
 
 @dataclass
@@ -18,13 +19,7 @@ class Event:  # parameter order = required, optional, logic dependant
     calendar_id: int
     description: str | None = None
 
-    id: int = field(init=False)
-
-    _next_id: ClassVar[int] = 0
-
-    def __post_init__(self):
-        self.id = Event._next_id
-        Event._next_id += 1
+    id: UUID = field(default_factory=uuid4)
 
 
 @dataclass
