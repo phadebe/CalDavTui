@@ -61,18 +61,18 @@ def build_event(calendar_id: int) -> Event:
         description=description,
     )
 
-    # def event_to_json(events: list[Event]):
-    #     event_data = [events.__dict__ for event in events]
-    #     return json.dumps(event_data)
+
+def event_to_json(event: Event) -> json:
+    event_dict = asdict(event)
+    event_json = json.dumps(event_dict, default=str)
+    return event_json
 
 
 if __name__ == "__main__":
 
     print("****************************************")
     print("****************************************")
-    print(get_date("start"))
-    print("****************************************")
-    print("****************************************")
-    print(get_date("end"))
+    event1 = build_event(1)
+    print(event_to_json(event1))
     print("****************************************")
     print("****************************************")
