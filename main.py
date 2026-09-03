@@ -63,9 +63,7 @@ def build_event(calendar_id: int) -> Event:
 
 
 def event_to_json(event: Event) -> str:
-    event_dict = asdict(event)
-    event_json = json.dumps(event_dict, default=str)
-    return event_json
+    return json.dumps(asdict(event), default=str)
 
 
 if __name__ == "__main__":
