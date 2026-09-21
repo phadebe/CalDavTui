@@ -3,9 +3,10 @@
 import json
 from dataclasses import asdict
 from datetime import datetime
-from uuid import UUID, uuid4
+from uuid import UUID
 
 from models import Event, Person
+from persistence.persistence import serialise_default
 
 
 def get_title() -> str:
@@ -66,11 +67,7 @@ def build_event(calendar_id: int) -> Event:
 def event_to_json(event: Event) -> str:
     return json.dumps(
         asdict(event),
-        default=lambda o: (
-            o.isoformat()
-            if isinstance(o, datetime)
-            else str(o) if isinstance(o, UUID) else None
-        ),
+        default=serialise_default,
     )
 
 
