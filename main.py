@@ -3,6 +3,7 @@
 import json
 from dataclasses import asdict
 from datetime import datetime
+from uuid import UUID, uuid4
 
 from models import Event, Person
 
@@ -63,7 +64,14 @@ def build_event(calendar_id: int) -> Event:
 
 
 def event_to_json(event: Event) -> str:
-    return json.dumps(asdict(event), default=str)
+    return json.dumps(
+        asdict(event),
+        default=lambda o: (
+            o.isoformat()
+            if isinstance(o, datetime)
+            else str(o) if isinstance(o, UUID) else None
+        ),
+    )
 
 
 if __name__ == "__main__":
