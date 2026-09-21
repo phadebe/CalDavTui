@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import json
 from dataclasses import asdict
 from datetime import datetime
 from uuid import UUID
@@ -64,18 +63,9 @@ def build_event(calendar_id: int) -> Event:
     )
 
 
-def event_to_json(event: Event) -> str:
-    return json.dumps(
-        asdict(event),
-        default=serialise_default,
-    )
-
-
 if __name__ == "__main__":
 
     print("****************************************")
     print("****************************************")
-    event1 = build_event(1)
-    print(event_to_json(event1))
     print("****************************************")
     print("****************************************")
