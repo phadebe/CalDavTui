@@ -3,9 +3,8 @@ from dataclasses import asdict
 from datetime import datetime
 from uuid import UUID
 
-import testing
 
-from ..models import Calendar, Event, Person
+from ..models import *
 
 # Serialisation of Objects to JSON
 
